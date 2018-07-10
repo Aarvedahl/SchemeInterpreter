@@ -78,6 +78,14 @@ fib 1 = 1
 fib n
   | n >= 2 = fib (n-1) + fib (n-2)
 
+divideByTen = (/10)
+
+isUpperLetter = (`elem` ['A'..'Z'])
+
+subtract4 = (subtract 4)
+
+applyTwice f x = f (f x)
+
 quicksort [] = []
 quicksort (x:xs) =
   let smallerSorted = quicksort [a|a <- xs, a<=x]
