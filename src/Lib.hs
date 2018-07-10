@@ -31,9 +31,9 @@ describeList xs = "The list is " ++ what xs
         what xs = "A really long list"
 
 
-fibonacci number = case number of 0 -> 0
+fibonacci number = case number of 0 -> 1
                                   1 -> 1
-                                  number -> (fibonacci (number -2)) + (fibonacci (number -1))
+                                  number -> fibonacci (number -2) + fibonacci (number -1)
 
 
 maxi2 [] = error "maximum of empty list"
@@ -73,9 +73,16 @@ multiplyList (x:xs)
   | otherwise = x * x:multiplyList xs
 
 
+fib 0 = 1
+fib 1 = 1
+fib n
+  | n >= 2 = fib (n-1) + fib (n-2)
+
 quicksort [] = []
 quicksort (x:xs) =
   let smallerSorted = quicksort [a|a <- xs, a<=x]
       biggerSorted = quicksort [a|a<-xs, a>x]
   in smallerSorted ++ [x] ++ biggerSorted
 
+
+compareWithHundred = compare 100
