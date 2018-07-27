@@ -2,6 +2,8 @@ module Lib
     ( someFunc
     ) where
 
+
+
 someFunc :: IO ()
 someFunc = putStrLn "someFunc"
 
@@ -86,11 +88,20 @@ subtract4 = (subtract 4)
 
 applyTwice f x = f (f x)
 
+zipf _ [] _ = []
+zipf _ _ [] = []
+zipf f(x:xs)(y:ys) = f x y:zipf f xs ys
+
 quicksort [] = []
 quicksort (x:xs) =
-  let smallerSorted = quicksort [a|a <- xs, a<=x]
-      biggerSorted = quicksort [a|a<-xs, a>x]
-  in smallerSorted ++ [x] ++ biggerSorted
+   let smallSort = quicksort (filter (<=x)  xs)
+       bigSort = quicksort (filter (>x) xs)
+   in smallSort ++ [x] ++ bigSort
 
+findLargestNumber = head (filter p [100000, 99999..])
+  where p x = x `mod` 3829 == 0
 
-compareWithHundred = compare 100
+chain 1 = [1]
+chain n
+  | even n = n:chain (n `div` 2)
+  | odd n = n:chain (n*3 + 1)
